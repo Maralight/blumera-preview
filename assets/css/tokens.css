@@ -1,0 +1,17 @@
+:root {
+  --green: #0f4c3a;
+  --green-dark: #09372b;
+  --amber: #b18445;
+  --ivory: #f4f1e8;
+  --white: #ffffff;
+  --ink: #17221d;
+  --muted: #5b655f;
+  --line: rgba(15,76,58,.22);
+  --font-display: "Bodoni Moda", "Times New Roman", serif;
+  --font-body: "Instrument Sans", Arial, sans-serif;
+  --shell: min(90rem, calc(100% - 8rem));
+  --section-y: clamp(5rem, 8vw, 9rem);
+  --space-1: .5rem; --space-2: .75rem; --space-3: 1rem; --space-4: 1.5rem;
+  --space-5: 2rem; --space-6: 3rem; --space-7: 4rem; --space-8: 6rem;
+  --ease: cubic-bezier(.22,1,.36,1);
+}
