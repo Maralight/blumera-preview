@@ -3,20 +3,25 @@
    Edit the values below. Keep quotation marks and commas.
 ================================================== */
 window.BLUMERA_CONFIG = {
-  // EDIT THIS: Main company name
   companyName: "Blumera Global Services Ltd",
-  // EDIT THIS: Main company email
-  email: "Blumerags@gmail.com",
-  // EDIT THIS: Display telephone number
-  phoneDisplay: "08044150171",
-  // EDIT THIS: International telephone link, digits only after +
-  phoneLink: "+2348044150171",
-  // EDIT THIS: Lagos office
+  email: "info@blumeraltd.com",
+  phoneDisplay: "0803 415 0171",
+  phoneLink: "+2348034150171",
+
+  // WhatsApp: change to false to remove the floating button completely.
+  whatsappEnabled: true,
+  whatsappDisplay: "0803 415 0171",
+  whatsappLink: "2348034150171",
+  whatsappMessage: "Hello Blumera, I would like to make an equipment procurement enquiry.",
+
+  // Existing office details retained as requested.
   officeLagos: "Glitter Shopping Complex, 342 Abeokuta Expressway, Ajegunle-Ilo, Lagos, Nigeria.",
-  // EDIT THIS: Port Harcourt office
   officePortHarcourt: "Awa Close, Off Prof. Okujiagu Street, Off Peter Odili Road, Port Harcourt, Rivers State, Nigeria.",
-  // EDIT THIS: CAC registration number
+
+  sourcingRegions: ["Asia", "United States", "Europe"],
   rcNumber: "9636057",
-  // EDIT THIS: Add a Formspree/Basin endpoint before making the RFQ form live.
+  maralightUrl: "https://maralightltd.com",
+
+  // Add a Formspree/Basin endpoint before making the RFQ form live.
   formEndpoint: "REPLACE_WITH_APPROVED_FORM_ENDPOINT"
 };

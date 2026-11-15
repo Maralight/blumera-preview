@@ -7,7 +7,7 @@
   --ink: #17221d;
   --muted: #5b655f;
   --line: rgba(15,76,58,.22);
-  --font-display: "Bodoni Moda", "Times New Roman", serif;
+  --font-display: "Sora", "Instrument Sans", Arial, sans-serif;
   --font-body: "Instrument Sans", Arial, sans-serif;
   --shell: min(90rem, calc(100% - 8rem));
   --section-y: clamp(5rem, 8vw, 9rem);

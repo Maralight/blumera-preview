@@ -4,11 +4,18 @@
   <meta charset="utf-8">
   <title>Blumera Mobile Preview Harness</title>
   <style>
-    html, body { margin: 0; width: 390px; height: 844px; overflow: hidden; background: #0f4c3a; }
-    iframe { display: block; width: 390px; height: 844px; border: 0; }
+    html, body { margin: 0; width: var(--preview-width, 390px); height: var(--preview-height, 844px); overflow: hidden; background: #0f4c3a; }
+    iframe { display: block; width: 100%; height: 100%; border: 0; }
   </style>
 </head>
 <body>
   <iframe src="../index.html" title="Blumera website mobile preview"></iframe>
+  <script>
+    const params = new URLSearchParams(location.search);
+    const width = Math.max(320, Math.min(430, Number(params.get("width")) || 390));
+    const height = Math.max(640, Math.min(932, Number(params.get("height")) || 844));
+    document.documentElement.style.setProperty("--preview-width", `${width}px`);
+    document.documentElement.style.setProperty("--preview-height", `${height}px`);
+  </script>
 </body>
 </html>

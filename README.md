@@ -1,6 +1,6 @@
-# Blumera Global Services Ltd Website
+# Blumera Global Services Ltd Website — Version 2
 
-A lightweight, GitHub Pages-ready corporate website built with plain HTML, CSS and JavaScript.
+A lightweight, GitHub Pages-ready corporate website built with plain HTML, CSS and JavaScript. Version 2 adds dedicated supply-category pages, a 3D coverflow category selector, a compact industry belt, revised typography, configurable WhatsApp and Maralight attribution.
 
 ## Quick Preview
 
@@ -11,6 +11,10 @@ Open `index.html` in a browser. For the most accurate preview, run a local stati
 1. **Replace a picture:** open `assets/images`, replace the relevant file and keep exactly the same filename and extension.
 2. **Change contact details:** edit `assets/js/site-config.js`.
 3. **Change page text:** open `index.html` and search for the large `SECTION` comment above the relevant content.
+
+Supply-category content is kept in one clearly labelled file: `assets/js/category-data.js`.
+
+To change the WhatsApp number, edit `whatsappLink` in `assets/js/site-config.js`. To remove the floating button, change `whatsappEnabled: true` to `whatsappEnabled: false`.
 
 Read `docs/EDITING-GUIDE.md` before editing or uploading.
 

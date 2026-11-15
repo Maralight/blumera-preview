@@ -13,6 +13,25 @@
 
 Open `assets/js/site-config.js`. Only edit text inside quotation marks. Keep commas and quotation marks intact.
 
+The current central details are:
+
+- Email: `info@blumeraltd.com`
+- Telephone: `0803 415 0171`
+- WhatsApp: `2348034150171` in international digits-only format
+
+Set `whatsappEnabled` to `false` to remove the floating WhatsApp button.
+
+## Edit Supply Category Pages
+
+Open `assets/js/category-data.js`. Each category has one labelled block containing:
+
+- title and introduction;
+- equipment list;
+- industries served;
+- specification guidance.
+
+Edit the wording inside quotation marks. Keep commas and brackets in place.
+
 ## Change Website Text
 
 Open `index.html`. Search for a heading such as `SECTION 04: SUPPLY CATEGORIES`. Edit only the visible text between HTML tags unless you understand HTML.
