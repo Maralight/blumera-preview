@@ -170,6 +170,22 @@ html,body{max-width:100%;overflow-x:clip}
   .category-nav{flex-direction:column}.category-nav a:last-child{text-align:left}
   .whatsapp-float{width:3.35rem;height:3.35rem;padding:.7rem;justify-content:center}.whatsapp-float span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
 }
+/* V2.1 tagline correction — text only, no background box */
+.brand-tagline {
+  padding: 0;
+  background: transparent;
+  border-left: 0;
+  box-shadow: none;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.35);
+}
+
+.brand-tagline .tagline-green {
+  color: #B8D4C6;
+}
+
+.brand-tagline .tagline-amber {
+  color: #D0A05D;
+}
 @media(max-width:360px){.supply-card{width:80vw}.coverflow-hint{padding-inline:1rem}.coverflow-controls{margin-top:.25rem}}
 @media(prefers-reduced-motion:reduce){.supply-card,.supply-card img{transition:none}.whatsapp-float{transition:none}}
 
