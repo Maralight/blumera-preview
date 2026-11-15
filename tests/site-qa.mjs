@@ -8,6 +8,7 @@ const outputDir = process.env.PREVIEW_DIR || "tests/artifacts";
 const viewports = [
   ["phone-320", 320, 720],
   ["phone-360", 360, 800],
+  ["phone-375", 375, 812],
   ["phone-390", 390, 844],
   ["phone-430", 430, 932],
   ["tablet-768", 768, 1024],
@@ -34,6 +35,7 @@ for (const [name, width, height] of viewports) {
     horizontalOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
     heroVisible: Boolean(document.querySelector(".hero-title")?.getBoundingClientRect().height),
     logoLoaded: Boolean(document.querySelector(".brand img")?.complete),
+    companyNameVisible: Boolean(document.querySelector(".brand-name")?.getBoundingClientRect().width),
     brokenImages: [...document.images].filter(img => img.loading !== "lazy" && (!img.complete || img.naturalWidth === 0)).map(img => img.src),
     targetSizes: [...document.querySelectorAll("a,button")].filter(el => {
       const rect = el.getBoundingClientRect();
@@ -46,6 +48,18 @@ for (const [name, width, height] of viewports) {
     const expanded = await page.locator("[data-menu-toggle]").getAttribute("aria-expanded");
     const menuOpen = await page.locator("[data-menu]").evaluate(el => el.classList.contains("is-open"));
     if (expanded !== "true" || !menuOpen) errors.push("mobile menu did not open correctly");
+    await page.locator("[data-category-trigger]").click();
+    const categoryExpanded = await page.locator("[data-category-trigger]").getAttribute("aria-expanded");
+    const categoryVisible = await page.locator("[data-category-menu]").isVisible();
+    if (categoryExpanded !== "true" || !categoryVisible) errors.push("mobile category accordion did not open correctly");
+    await page.keyboard.press("Escape");
+    if (await page.locator("[data-menu]").evaluate(el => el.classList.contains("is-open"))) errors.push("mobile menu did not close on Escape");
+  } else if (width >= 1024) {
+    await page.locator("[data-category-dropdown]").hover();
+    if (!(await page.locator("[data-category-menu]").isVisible())) errors.push("desktop category dropdown did not remain visible on hover");
+    await page.locator("[data-category-menu] a").first().hover();
+    await page.waitForTimeout(220);
+    if (!(await page.locator("[data-category-menu]").isVisible())) errors.push("desktop category dropdown closed while pointer was inside it");
     await page.keyboard.press("Escape");
   }
 
@@ -94,5 +108,6 @@ const failed = results.some(item =>
   item.errors?.length ||
   item.heroVisible === false ||
   item.logoLoaded === false
+  || item.companyNameVisible === false
 );
 if (failed) process.exitCode = 1;

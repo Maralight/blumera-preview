@@ -21,7 +21,34 @@
   if(header){const update=()=>header.classList.toggle("is-scrolled",window.scrollY>24);update();addEventListener("scroll",update,{passive:true})}
 
   const toggle=document.querySelector("[data-menu-toggle]"),menu=document.querySelector("[data-menu]"),backdrop=document.querySelector("[data-menu-backdrop]");
+  const categoryDropdown=document.querySelector("[data-category-dropdown]"),categoryTrigger=document.querySelector("[data-category-trigger]"),categoryMenu=document.querySelector("[data-category-menu]");
   let lastFocused=null;
+  let dropdownTimer=0;
+  function setCategoryDropdown(open,focusFirst=false){
+    if(!categoryDropdown||!categoryTrigger||!categoryMenu)return;
+    clearTimeout(dropdownTimer);
+    categoryDropdown.classList.toggle("is-open",open);
+    categoryTrigger.setAttribute("aria-expanded",String(open));
+    categoryMenu.hidden=!open;
+    if(open&&focusFirst)requestAnimationFrame(()=>categoryMenu.querySelector("a")?.focus());
+  }
+  if(categoryDropdown&&categoryTrigger&&categoryMenu){
+    categoryTrigger.addEventListener("click",()=>setCategoryDropdown(categoryTrigger.getAttribute("aria-expanded")!=="true"));
+    categoryTrigger.addEventListener("keydown",e=>{
+      if(e.key==="ArrowDown"){e.preventDefault();setCategoryDropdown(true,true)}
+      if(e.key==="Escape"){e.preventDefault();setCategoryDropdown(false)}
+    });
+    categoryDropdown.addEventListener("pointerenter",()=>{if(matchMedia("(min-width:761px)").matches)setCategoryDropdown(true)});
+    categoryDropdown.addEventListener("pointerleave",()=>{if(matchMedia("(min-width:761px)").matches)dropdownTimer=setTimeout(()=>setCategoryDropdown(false),180)});
+    categoryMenu.addEventListener("keydown",e=>{
+      const links=[...categoryMenu.querySelectorAll("a")];const index=links.indexOf(document.activeElement);
+      if(e.key==="Escape"){e.preventDefault();setCategoryDropdown(false);categoryTrigger.focus()}
+      if(e.key==="ArrowDown"){e.preventDefault();links[(index+1+links.length)%links.length]?.focus()}
+      if(e.key==="ArrowUp"){e.preventDefault();links[(index-1+links.length)%links.length]?.focus()}
+    });
+    categoryMenu.addEventListener("click",e=>{if(e.target.closest("a"))setCategoryDropdown(false)});
+    document.addEventListener("click",e=>{if(!categoryDropdown.contains(e.target))setCategoryDropdown(false)});
+  }
   function setMenu(open){
     if(!toggle||!menu)return;
     toggle.setAttribute("aria-expanded",String(open));
@@ -31,7 +58,7 @@
     document.body.classList.toggle("menu-open",open);
     if(backdrop){backdrop.hidden=!open;backdrop.classList.toggle("is-open",open)}
     if(open){lastFocused=document.activeElement;requestAnimationFrame(()=>menu.querySelector("a")?.focus())}
-    else if(lastFocused instanceof HTMLElement&&document.contains(lastFocused)){lastFocused.focus({preventScroll:true})}
+    else{setCategoryDropdown(false);if(lastFocused instanceof HTMLElement&&document.contains(lastFocused)){lastFocused.focus({preventScroll:true})}}
   }
   if(toggle&&menu){
     toggle.addEventListener("click",()=>setMenu(toggle.getAttribute("aria-expanded")!=="true"));
@@ -40,9 +67,10 @@
     // transform avoids retargeting the same pointer release onto the toggle.
     menu.addEventListener("click",e=>{if(e.target.closest("a"))setTimeout(()=>setMenu(false),0)});
     document.addEventListener("keydown",e=>{
+      if(e.key==="Escape")setCategoryDropdown(false);
       if(e.key==="Escape"&&toggle.getAttribute("aria-expanded")==="true")setMenu(false);
       if(e.key==="Tab"&&toggle.getAttribute("aria-expanded")==="true"&&matchMedia("(max-width:760px)").matches){
-        const focusable=[toggle,...menu.querySelectorAll("a,button")].filter(el=>!el.hasAttribute("disabled"));
+        const focusable=[toggle,...menu.querySelectorAll("a,button")].filter(el=>!el.hasAttribute("disabled")&&el.offsetParent!==null);
         const first=focusable[0],last=focusable[focusable.length-1];
         if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}
         else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}

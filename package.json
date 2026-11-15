@@ -1,8 +1,8 @@
 {
   "name": "blumera-website",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "private": true,
-  "description": "Blumera Global Services Ltd procurement and equipment supply website — Version 2",
+  "description": "Blumera Global Services Ltd procurement and equipment supply website — Version 2.1",
   "scripts": {
     "serve": "python3 -m http.server 4173",
     "test": "node tests/site-qa.mjs"

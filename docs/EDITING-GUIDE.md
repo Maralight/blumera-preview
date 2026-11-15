@@ -36,6 +36,14 @@ Edit the wording inside quotation marks. Keep commas and brackets in place.
 
 Open `index.html`. Search for a heading such as `SECTION 04: SUPPLY CATEGORIES`. Edit only the visible text between HTML tags unless you understand HTML.
 
+## Change The Tagline Or Brand Colours
+
+The approved wording appears in `index.html` as `Clear Solutions, Dependable Delivery`. Keep it in sentence case. The first phrase uses `.tagline-green`; the second uses `.tagline-amber`. Their colour values are in `assets/css/v2.css`.
+
+## Edit The Header Category Menu
+
+The seven dropdown links are written directly in `index.html` and each `supply-*.html` page so navigation still works without a framework. When adding or renaming a category, update every matching header link and keep `assets/js/category-data.js` aligned.
+
 ## Restore A Broken Edit
 
 Use GitHub's file history to open the last working version, select **Raw**, copy the content and replace the broken file. For a major problem, restore the previous Git commit.

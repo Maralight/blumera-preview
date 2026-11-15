@@ -1,9 +1,9 @@
 /* ==================================================
-   BLUMERA V2 — BOLD INDUSTRIAL EDITORIAL SYSTEM
+   BLUMERA V2.1 — BOLD INDUSTRIAL EDITORIAL SYSTEM
 ================================================== */
-:root{--font-display:"Sora","Instrument Sans",Arial,sans-serif}
+:root{--font-display:"Manrope",Arial,sans-serif;--font-body:"Manrope",Arial,sans-serif;--font-accent:"Cormorant Garamond",Georgia,serif}
 html,body{max-width:100%;overflow-x:clip}
-.display{font-family:var(--font-display);font-weight:700;letter-spacing:-.045em}
+.display{font-family:var(--font-display);font-weight:800;letter-spacing:-.045em}
 .section-heading h2,.intro-statement h2,.process-intro h2,.assurance-copy h2,.about-copy h2,.cta-grid h2,.rfq-hero h1,.rfq-aside h2,.legal-wrap h1{font-weight:700}
 .script-accent{font-family:var(--font-body);font-style:normal;font-weight:600;letter-spacing:.08em;text-transform:uppercase;font-size:.75rem}
 .hero-title{font-size:clamp(3.15rem,5.7vw,6.4rem);line-height:.96;max-width:12ch}
@@ -11,6 +11,40 @@ html,body{max-width:100%;overflow-x:clip}
 .intro-statement h2{font-size:clamp(2.7rem,4.6vw,5.2rem);line-height:1.02}
 .process-list h3,.legal-wrap h2{font-family:var(--font-display);font-weight:600}
 .number-box{font-family:var(--font-display);font-weight:600}
+
+/* Persistent brand lockup */
+.site-header{position:fixed}
+.brand-lockup{width:auto;display:flex;align-items:center;gap:.85rem;min-width:0;color:inherit}
+.brand-lockup img{width:5.4rem;height:4.55rem;flex:0 0 auto}
+.brand-name{max-width:15.5rem;font-size:.82rem;line-height:1.22;font-weight:700;letter-spacing:.035em;text-transform:none}
+.site-header:not(.is-scrolled):not(.site-header--solid) .brand-lockup{background:none;padding:0;border-radius:0}
+.site-header:not(.is-scrolled):not(.site-header--solid) .brand-lockup img{background:rgba(244,241,232,.95);padding:.2rem .4rem;border-radius:2px}
+
+/* Hero brand line */
+.brand-tagline{display:inline-flex;align-items:baseline;flex-wrap:wrap;gap:.18em .35em;width:fit-content;margin-top:1.35rem;padding:.45rem .8rem .52rem;background:rgba(244,241,232,.94);border-left:3px solid var(--amber);font-family:var(--font-accent);font-size:clamp(1.35rem,2vw,1.8rem);font-style:italic;font-weight:600;line-height:1;box-shadow:0 .7rem 2rem rgba(5,38,28,.12)}
+.tagline-green{color:var(--green)}.tagline-amber{color:#9b6a2d}
+
+/* Focus statement */
+.intro-note{position:relative;padding-top:1.35rem}
+.intro-note::before{content:"";position:absolute;inset:0 auto auto 0;width:4.5rem;height:2px;background:var(--amber)}
+.focus-label{display:inline-flex;align-items:center;gap:.55rem;color:var(--green);font-weight:800;letter-spacing:.12em}
+.focus-label::after{content:"";width:1.7rem;height:1px;background:currentColor;opacity:.5}
+.focus-primary{margin-top:1.25rem;font-weight:650;font-size:1.08rem;line-height:1.45}
+.focus-accent{margin-top:.35rem;font-family:var(--font-accent);font-size:clamp(1.35rem,2vw,1.75rem);font-style:italic;font-weight:600;line-height:1.12;color:var(--green)}
+
+/* Supply-category dropdown */
+.nav-dropdown{position:relative;display:flex;align-items:center;align-self:stretch}
+.nav-dropdown-trigger{display:flex;align-items:center;gap:.45rem;border:0;background:none;color:inherit;padding:.5rem 0;font:inherit;cursor:pointer}
+.nav-dropdown-trigger::after{content:"";width:.42rem;height:.42rem;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg) translateY(-.12rem);transition:transform .2s}
+.nav-dropdown.is-open .nav-dropdown-trigger::after{transform:rotate(225deg) translate(-.08rem,-.03rem)}
+.nav-dropdown-panel{position:absolute;left:-1.1rem;top:100%;width:min(23rem,90vw);padding:.65rem;background:rgba(244,241,232,.99);color:var(--ink);border:1px solid var(--line);box-shadow:0 1.25rem 3rem rgba(9,55,43,.16);display:grid;z-index:110}
+.nav-dropdown-panel[hidden]{display:none}
+.nav-dropdown-panel a{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.72rem .8rem;border-bottom:1px solid rgba(15,76,58,.12);font-size:.82rem;font-weight:650;line-height:1.25}
+.nav-dropdown-panel a:last-child{border-bottom:0}.nav-dropdown-panel a::after{content:"→";color:var(--amber)}
+.nav-dropdown-panel a:hover,.nav-dropdown-panel a:focus-visible{background:rgba(15,76,58,.07);color:var(--green)}
+
+.footer-tagline{font-family:var(--font-accent);font-style:italic;font-weight:600;font-size:1.18rem;line-height:1.1}
+.footer-tagline .tagline-green{color:#b8d4c6}.footer-tagline .tagline-amber{color:#d0a05d}
 
 /* Mobile drawer — intentionally isolated from page scrolling */
 .menu-backdrop{position:fixed;inset:0;border:0;background:rgba(9,35,27,.58);backdrop-filter:blur(3px);z-index:101;opacity:0;transition:opacity .25s}
@@ -106,13 +140,20 @@ html,body{max-width:100%;overflow-x:clip}
 
 /* Responsive V2 */
 @media(max-width:1050px){
+  .brand-name{max-width:12.5rem;font-size:.76rem}.primary-nav{gap:clamp(.8rem,1.4vw,1.35rem);font-size:.82rem}
   .supply-card{width:clamp(18rem,43vw,29rem)}
   .industry-belt-item{flex-basis:49%}.industry-belt-item:nth-child(odd){padding-left:0;border-left:0}.industry-belt-item:nth-child(even){padding-left:1.5rem;border-left:1px solid rgba(255,255,255,.22)}
 }
 @media(max-width:760px){
+  .header-inner{min-height:4.85rem;gap:.65rem}.brand-lockup{gap:.55rem;max-width:calc(100% - 3.6rem)}.brand-lockup img{width:4.15rem;height:3.75rem}.brand-name{max-width:10.7rem;font-size:clamp(.66rem,2.7vw,.78rem);line-height:1.18;letter-spacing:.015em}
   .site-header .primary-nav{position:fixed;inset:0 0 0 auto;width:min(88vw,24rem);height:100dvh;background:var(--ivory);color:var(--ink);padding:6.5rem 1.5rem max(2rem,env(safe-area-inset-bottom));z-index:103;display:flex;flex-direction:column;align-items:stretch;gap:0;transform:translateX(105%);transition:transform .35s var(--ease);overflow-y:auto;overscroll-behavior:contain}
   .site-header .primary-nav.is-open{transform:none}
   .site-header .primary-nav>a:not(.button){display:block;font-family:var(--font-display);font-size:clamp(1.3rem,6vw,1.75rem);font-weight:600;padding:1rem 0;border-bottom:1px solid var(--line)}
+  .nav-dropdown{display:block;align-self:auto;border-bottom:1px solid var(--line)}
+  .nav-dropdown-trigger{width:100%;justify-content:space-between;padding:1rem 0;font-family:var(--font-display);font-size:clamp(1.3rem,6vw,1.75rem);font-weight:650}
+  .nav-dropdown-panel{position:static;width:auto;padding:0 0 .75rem .8rem;background:transparent;border:0;border-left:2px solid var(--amber);box-shadow:none}
+  .nav-dropdown-panel a{padding:.68rem .35rem;font-size:.92rem;font-weight:600}
+  .brand-tagline{font-size:1.28rem;max-width:min(100%,24rem)}
   .menu-toggle{display:grid;place-items:center}
   .hero-title{font-size:clamp(2.65rem,12.6vw,4rem);line-height:.98;max-width:12ch}
   .section-heading h2,.industry-intro h2{font-size:clamp(2.45rem,11vw,3.7rem)}
